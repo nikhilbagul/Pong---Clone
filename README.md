@@ -10,10 +10,10 @@
 <li>Download and install Unity from the [official Unity website](https://unity3d.com/get-unity)</li>
 <li>Open Unity and select open project option.</li>
 <li>Point the new project to the repository we downloaded/cloned earlier.</li>
-<li>5. Hit Play</li>
+<li>Hit Play</li>
 </ul>
 
 #Note: This is a development build. 
-<p>The game is solely meant for educational and evaluation purposes.</p>
-<p>No commerical benefit is intended.</p>
+<p>The game is solely meant for educational and evaluation purposes.
+<br>No commerical benefit is intended.</p>
 
