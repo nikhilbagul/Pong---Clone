@@ -13,8 +13,16 @@
 <li>Hit Play</li>
 </ul>
 
+#Player controls
+<p>
+<br>Player Left: Move the paddle using W (For upwards) and S (For downwards)
+<br>Player Right: Move the paddle using UP arrow key (For upwards) and DOWN arrow key (For downwards)
+</p>
+
 #Note: 
 <p>This is a development build. 
 <br>The game is solely meant for educational and evaluation purposes.
 <br>No commerical benefit is intended.</p>
+
+
 
