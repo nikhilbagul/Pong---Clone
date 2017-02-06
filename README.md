@@ -13,7 +13,8 @@
 <li>Hit Play</li>
 </ul>
 
-#Note: This is a development build. 
-<p>The game is solely meant for educational and evaluation purposes.
+#Note: 
+<p>This is a development build. 
+<br>The game is solely meant for educational and evaluation purposes.
 <br>No commerical benefit is intended.</p>
 
