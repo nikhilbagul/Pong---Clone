@@ -2,7 +2,7 @@
 <p>Tribute to Atari Pong
 <br>A clone of the original game developed using Unity and scripted in C#</p>
 
-#Unity Version : 5.3.3f1
+#Unity version : 5.3.3f1
 
 #How to Run the game on Client
 <ul>
