@@ -14,8 +14,7 @@
 </ul>
 
 #Player controls
-<p>
-<br>Player Left: Move the paddle using W (For upwards) and S (For downwards)
+<p>Player Left:  Move the paddle using W (For upwards) and S (For downwards)
 <br>Player Right: Move the paddle using UP arrow key (For upwards) and DOWN arrow key (For downwards)
 </p>
 
