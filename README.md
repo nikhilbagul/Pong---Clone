@@ -5,6 +5,7 @@
 #Unity version : 5.3.3f1
 
 #How to Run the game on Client
+
 <ul>
 <li>Download/Clone the repository</li>
 <li>Download and install Unity from the <a href = "https://unity3d.com/get-unity" target = "_blank">official Unity website</a></li>
@@ -14,6 +15,7 @@
 </ul>
 
 #Player controls
+
 <p>Player Left:  Move the paddle using W (For upwards) and S (For downwards)
 <br>Player Right: Move the paddle using UP arrow key (For upwards) and DOWN arrow key (For downwards)
 </p>
