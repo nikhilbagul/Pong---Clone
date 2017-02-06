@@ -4,20 +4,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
+	// Update is called once per frame, roughly 60 times per second. (System dependent value)
 	void Update ()
     {
         if (Input.GetKey(KeyCode.Return))
         {
-            SceneManager.LoadScene("GameScreen");
+            SceneManager.LoadScene("GameScreen");               //load GameScreen scene from main menu on user selection
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))                        //quit the game from main menu
         {
             Application.Quit();
         }
