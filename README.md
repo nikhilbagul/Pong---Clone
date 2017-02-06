@@ -1,6 +1,6 @@
 # Pong - Unity Clone
 <p>Tribute to Atari Pong
-<br>A clone of the original game developed using Unity and scripted in C#</p>
+<br>A clone of the original game developed using Unity and scripted in C#.</p>
 
 #Unity version: 5.3.3f1
 <p></p>
