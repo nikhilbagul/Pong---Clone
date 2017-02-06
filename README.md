@@ -7,7 +7,7 @@
 #How to Run the game on Client
 <ul>
 <li>Download/Clone the repository</li>
-<li>Download and install Unity from the [official Unity website](https://unity3d.com/get-unity)</li>
+<li>Download and install Unity from the <a href = "https://unity3d.com/get-unity" target = "_blank">official Unity website</a></li>
 <li>Open Unity and select open project option.</li>
 <li>Point the new project to the repository we downloaded/cloned earlier.</li>
 <li>Hit Play</li>
