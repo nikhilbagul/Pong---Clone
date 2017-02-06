@@ -5,7 +5,6 @@
 #Unity version: 5.3.3f1
 
 #How to Run the game on Client
-
 <ul>
 <li>Download/Clone the repository</li>
 <li>Download and install Unity from the <a href = "https://unity3d.com/get-unity" target = "_blank">official Unity website</a></li>
