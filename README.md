@@ -2,7 +2,7 @@
 <p>Tribute to Atari Pong
 <br>A clone of the original game developed using Unity and scripted in C#</p>
 
-#Unity version : 5.3.3f1
+#Unity version: 5.3.3f1
 
 #How to Run the game on Client
 
@@ -14,8 +14,7 @@
 <li>Hit Play</li>
 </ul>
 
-#Player controls
-
+#Player controls:
 <p>Player Left:  Move the paddle using W (For upwards) and S (For downwards)
 <br>Player Right: Move the paddle using UP arrow key (For upwards) and DOWN arrow key (For downwards)
 </p>
