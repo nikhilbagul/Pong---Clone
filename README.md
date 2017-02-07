@@ -17,6 +17,8 @@
 # Player controls:
 <p> Player Left:   Move the paddle using W (For upwards) and S (For downwards)
 <br>Player Right: Move the paddle using UP arrow key (For upwards) and DOWN arrow key (For downwards)
+<br><br>
+The first player to get 5 points, Wins!
 </p>
 
 # Note: 
