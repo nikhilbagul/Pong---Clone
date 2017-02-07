@@ -3,10 +3,11 @@ using System.Collections;
 
 public class MovePaddles : MonoBehaviour {
 
-    public float paddleMovementSpeed = 15.0f;           //used to tweak the paddle movement speeds from the inspector
+    public float paddleMovementSpeed = 70.0f;           //used to tweak the paddle movement speeds from the inspector
     public float padding = 1.0f;                        //used to tweak the Top/Bottom padding from the inspector
-    public string playerControllerAxis;                 //used to assign the player control axis depending on the player
 
+
+    private string playerControllerAxis;                 //used to assign the player control axis depending on the player
     private float boundaryTopEdge, boundaryBottomEdge;  //container to store top and bottom bounds of the screen/play space
 
     void Start ()
@@ -16,6 +17,12 @@ public class MovePaddles : MonoBehaviour {
         float distanceFromCamera = transform.position.z - camera.transform.position.z;                          //obtain the z depth of camera from the plane contaiing the Paddles
         boundaryBottomEdge = camera.ViewportToWorldPoint(new Vector3(1, 1, distanceFromCamera)).y - padding;
         boundaryTopEdge = camera.ViewportToWorldPoint(new Vector3(0, 0, distanceFromCamera)).y + padding;
+
+        if (this.gameObject.tag == "PlayerLeft")
+        { playerControllerAxis = "PlayerLeft"; }
+
+        if (this.gameObject.tag == "PlayerRight")
+        { playerControllerAxis = "PlayerRight"; }
     }
 	
 	void Update ()
