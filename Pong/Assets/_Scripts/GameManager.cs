@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour {
         gameOver = false;
         playerRight = GameObject.FindGameObjectWithTag("PlayerRight").transform;        //Find and store the player paddle gameobject's transform
         playerLeft = GameObject.FindGameObjectWithTag("PlayerLeft").transform;
+
+        leftPlayerScore = 0;
+        rightPlayerScore = 0;
     }
 	
 	// Update is called once per frame
@@ -52,12 +55,13 @@ public class GameManager : MonoBehaviour {
 
         if ( gameOver && (Input.GetKeyDown(KeyCode.Return)))                             //If player chooses to restart the game, start the Coroutine to reset the game
         {
-            StartCoroutine("RestartGame");      
+            //StartCoroutine("RestartGame");
+            SceneManager.LoadScene("GameScreen-AI");
         }
 
         if (gameOver && (Input.GetKeyDown(KeyCode.Space)))                              //If the game is over and player chooses to quit the game
         {
-            Application.Quit();
+            SceneManager.LoadScene("MainMenu");
         }
 
     }
@@ -75,7 +79,7 @@ public class GameManager : MonoBehaviour {
     public IEnumerator RestartGame()                                                    //used to reset the game state, flags and counters
     {
 
-        yield return new WaitForSeconds(0.2f);                                          //delay/pause before restarting the game
+        yield return new WaitForSeconds(0.2f);                                         //delay/pause before restarting the game
 
         gameOver = false;
         GameObject Ball = (GameObject)Instantiate(ballPrefab, new Vector3(0, 0, 0), Quaternion.identity);       //Instantiate the ball Prefab as a GameObject   

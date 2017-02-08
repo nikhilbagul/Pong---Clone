@@ -9,7 +9,7 @@ public class MainMenuManager : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.Return))
         {
-            SceneManager.LoadScene("GameScreen");               //load GameScreen scene from main menu on user selection
+            SceneManager.LoadScene("GameScreen-AI");               //load GameScreen scene from main menu on user selection
         }
 
         if (Input.GetKey(KeyCode.Space))                        //quit the game from main menu
