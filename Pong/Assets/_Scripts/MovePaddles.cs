@@ -28,7 +28,7 @@ public class MovePaddles : MonoBehaviour {
         if (this.gameObject.tag == "PlayerRight")
         { playerControllerAxis = "PlayerRight"; }
 
-        if (this.gameObject.tag == "AI")
+        if (this.gameObject.tag == "PlayerAI")
         { isAIMode = true; }
 
         if (Ball == null)
@@ -37,8 +37,7 @@ public class MovePaddles : MonoBehaviour {
             if (Ball != null)
             {
                 ballRigidBody = Ball.GetComponent<Rigidbody2D>();
-            }
-            
+            }            
         }
         
     }
@@ -100,8 +99,7 @@ public class MovePaddles : MonoBehaviour {
                                              Mathf.Clamp(temp.y, boundaryBottomEdge, boundaryTopEdge),
                                              temp.z);
                     }
-                }
-                
+                }                
             }
         }
 

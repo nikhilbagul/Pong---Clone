@@ -30,7 +30,11 @@ public class GameManager : MonoBehaviour {
     {
         gameOver = false;
         playerRight = GameObject.FindGameObjectWithTag("PlayerRight").transform;        //Find and store the player paddle gameobject's transform
-        playerLeft = GameObject.FindGameObjectWithTag("PlayerLeft").transform;
+
+        if(GameObject.FindGameObjectWithTag("PlayerLeft") != null)
+            playerLeft = GameObject.FindGameObjectWithTag("PlayerLeft").transform;
+        else
+            playerLeft = GameObject.FindGameObjectWithTag("PlayerAI").transform;
 
         leftPlayerScore = 0;
         rightPlayerScore = 0;
@@ -55,8 +59,8 @@ public class GameManager : MonoBehaviour {
 
         if ( gameOver && (Input.GetKeyDown(KeyCode.Return)))                             //If player chooses to restart the game, start the Coroutine to reset the game
         {
-            //StartCoroutine("RestartGame");
-            SceneManager.LoadScene("GameScreen-AI");
+            StartCoroutine("ResetGame");
+            //SceneManager.LoadScene("GameScreen-AI");
         }
 
         if (gameOver && (Input.GetKeyDown(KeyCode.Space)))                              //If the game is over and player chooses to quit the game
@@ -76,7 +80,7 @@ public class GameManager : MonoBehaviour {
         rightPlayerScoreText.text = rightPlayerScore.ToString();                        //update the player score text
     }
 
-    public IEnumerator RestartGame()                                                    //used to reset the game state, flags and counters
+    public IEnumerator ResetGame()                                                    //used to reset the game state, flags and counters
     {
 
         yield return new WaitForSeconds(0.2f);                                         //delay/pause before restarting the game
@@ -89,7 +93,7 @@ public class GameManager : MonoBehaviour {
         leftPlayerScore = 0;
         rightPlayerScore = 0;
 
-        //disable to player score and win messages
+        //disable player score and win messages
         leftPlayerWinText.gameObject.SetActive(false);
         rightPlayerWinText.gameObject.SetActive(false);
         leftPlayerScoreText.text = leftPlayerScore.ToString();

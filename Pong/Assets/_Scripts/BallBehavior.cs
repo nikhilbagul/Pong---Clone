@@ -9,6 +9,7 @@ public class BallBehavior : MonoBehaviour {
     public AudioClip wallCollisionSFX, paddleContactSFX, dieSFX;    //obtain the SFX audio clips
     public float SFXVolume = 0.25f;                                 //used totweak SFX volume from the editor
     public float ballResetDelay = 0.3f;                             //tweak this value to change the reset/respawn time of the ball
+    public float speedIncreaseCoefficient = 2.5f;                   //tweak this value to change the speed bump on each paddle hit
 
     public delegate void scoreUpdateEvent();                        //delagate to trigger events based on score update
     public static event scoreUpdateEvent leftPlayerScoreUpdate;
@@ -48,15 +49,15 @@ public class BallBehavior : MonoBehaviour {
             float reflectionAngle = (transform.position.y - collision.transform.position.y) / collision.collider.bounds.size.y;
             //set angle and speed of the new velocity vector using the normalised vector of the reflection angle
             Vector2 newDirection = new Vector2(-1, reflectionAngle).normalized;
-            GetComponent<Rigidbody2D>().velocity = (newDirection * GetComponent<Rigidbody2D>().velocity.magnitude) + newDirection*1.5f;    //adds a speed bump of 1.5f in the direction of the new vector       
+            GetComponent<Rigidbody2D>().velocity = (newDirection * GetComponent<Rigidbody2D>().velocity.magnitude) + newDirection* speedIncreaseCoefficient;    //adds a speed bump of 1.5f in the direction of the new vector       
         }
 
-        if (collision.gameObject.tag == "PlayerLeft")
+        if (collision.gameObject.tag == "PlayerLeft" || collision.gameObject.tag == "PlayerAI")
         {
             mainAudioSource.PlayOneShot(paddleContactSFX, SFXVolume);
             float reflectionAngle = (transform.position.y - collision.transform.position.y) / collision.collider.bounds.size.y;
             Vector2 newDirection = new Vector2(1, reflectionAngle).normalized;
-            GetComponent<Rigidbody2D>().velocity = (newDirection * GetComponent<Rigidbody2D>().velocity.magnitude) + newDirection * 1.5f;
+            GetComponent<Rigidbody2D>().velocity = (newDirection * GetComponent<Rigidbody2D>().velocity.magnitude) + newDirection * speedIncreaseCoefficient;
         }
 
         if (collision.gameObject.tag == "LeftWall")
