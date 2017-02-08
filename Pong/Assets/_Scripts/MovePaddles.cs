@@ -20,7 +20,7 @@ public class MovePaddles : MonoBehaviour {
         boundaryTopEdge = camera.ViewportToWorldPoint(new Vector3(1, 1, distanceFromCamera)).y - padding;
         boundaryBottomEdge = camera.ViewportToWorldPoint(new Vector3(0, 0, distanceFromCamera)).y + padding;
 
-        if (this.gameObject.tag == "PlayerLeft")
+        if (this.gameObject.tag == "PlayerLeft")         //check if 2 player mode i.e. if a Left paddle is active in the scene
         {
             playerControllerAxis = "PlayerLeft";           
         }
@@ -28,7 +28,7 @@ public class MovePaddles : MonoBehaviour {
         if (this.gameObject.tag == "PlayerRight")
         { playerControllerAxis = "PlayerRight"; }
 
-        if (this.gameObject.tag == "PlayerAI")
+        if (this.gameObject.tag == "PlayerAI")          //check if 1 player mode i.e. if an AI paddle is active in the scene
         { isAIMode = true; }
 
         if (Ball == null)
@@ -44,7 +44,7 @@ public class MovePaddles : MonoBehaviour {
 	
 	void Update ()
     {
-        if (!isAIMode)
+        if (!isAIMode)                                                                      //check if 1 player mode is enabled
         {
             float directionOfMovement = Input.GetAxisRaw(playerControllerAxis);             //obtain the current direction of movement of the paddle
             if (directionOfMovement == 1.0f)
@@ -72,16 +72,16 @@ public class MovePaddles : MonoBehaviour {
            
         }
 
-        if (isAIMode)
+        if (isAIMode)                       //if 1 player mode is enabled, then move the left paddle on its own/AI
         {
             if (Ball == null)
             {
                 //print("No ball");
-                Ball = GameObject.FindGameObjectWithTag("Ball");
+                Ball = GameObject.FindGameObjectWithTag("Ball");                //Find the Ball gameObject instance in the scene if any
                 if (Ball != null)
                 {
-                    print("ball in scene");
-                    ballRigidBody = Ball.GetComponent<Rigidbody2D>();
+                    //print("ball in scene");
+                    ballRigidBody = Ball.GetComponent<Rigidbody2D>();           //Get the rigidBody component of the Ball if there is a Ball in the scene
                 }
             }
 
@@ -92,7 +92,9 @@ public class MovePaddles : MonoBehaviour {
                 {
                     if (Ball.transform.position.x < Random.Range(0.0f, 30.0f))              //adjust the min & max value of reaction zone to increase/decrease difficulty
                     {
+                        //calculate the step distance which the AI paddle will move towards the Ball's y position
                         float step = paddleMovementSpeed * Time.deltaTime;
+                        //calculate the position vector which the AI paddle will try to move towards
                         Vector3 temp = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, Ball.transform.position.y), step);
                         transform.position = new Vector3(
                                              temp.x,
