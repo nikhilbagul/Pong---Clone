@@ -106,7 +106,8 @@ public class MainMenuManager : MonoBehaviour {
 
     public void onQuitClick()
     {
-        Application.Quit();                                         //quit the game from main menu
+        //Application.Quit();                                         //quit the game from main menu
+        SceneManager.LoadScene("SplashScreenAndMainMenu");
     }   
 
     public IEnumerator OnSplashScreenClicked()
