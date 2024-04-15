@@ -1,18 +1,46 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour {
 
     public GameObject divider, mainMenuCanvas, player1ModeHelpCanvas, player2ModeHelpCanvas;
 
-    private bool player1Mode, player2Mode, isMainMenu;
+    private bool player1Mode, player2Mode, isMainMenu, isIntroTextBlinking;
+
+    public Text introText;
+    public GameObject creditsPanel;
 
     void Start()
     {
         player1Mode = false;
         player2Mode = false;
         isMainMenu = true;
+
+        // Intro Text blinking animation
+        //introText.DOColor(Color.black, 1.0f,).SetLoops(-1, LoopType.Yoyo);
+
+        isIntroTextBlinking = true;
+        StartCoroutine(BlinkIntroText());
+    }
+
+    IEnumerator BlinkIntroText()
+    {
+        while (isIntroTextBlinking)
+        {
+            if (introText.color.a == 1.0f)
+            {
+                introText.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            }
+            else 
+            {
+                introText.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            }
+
+            yield return new WaitForSeconds(0.5f);
+        }
+                   
     }
 
 	// Update is called once per frame, roughly 60 times per second. (System dependent value)
@@ -75,5 +103,23 @@ public class MainMenuManager : MonoBehaviour {
     public void onQuitClick()
     {
         Application.Quit();                                         //quit the game from main menu
+    }   
+
+    public void OnSplashScreenClicked()
+    {
+        isIntroTextBlinking = false;
+        introText.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+
+        introText.text = "Pong is a two-dimensional sports game that simulates table tennis. The player controls an in-game paddle by moving it vertically across the left or right side of the screen. They can compete against another player controlling a second paddle on the opposing side. Players use the paddles to hit a ball back and forth. The goal is for each player to reach eleven points before the opponent; points are earned when one fails to return the ball to the other.";
+
+        introText.GetComponent<TypingEffect>().StartTypingTextVFX(EnableCreditsPanel); // Start typing animation
     }
+
+    void EnableCreditsPanel()
+    {
+        creditsPanel.SetActive(true);   
+    }
+
+
+
 }
