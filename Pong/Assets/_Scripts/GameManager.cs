@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour {
 
         if (gameOver && (Input.GetKeyDown(KeyCode.Space)))                              //If the game is over and player chooses to quit the game
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("SplashScreenAndMainMenu");
         }
 
     }

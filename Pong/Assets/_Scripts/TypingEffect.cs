@@ -21,7 +21,7 @@ public class TypingEffect : MonoBehaviour
     }
 
     // Coroutine to simulate typing effect
-    IEnumerator TypingTextVFX(UnityAction onCompleteCallback)
+    IEnumerator TypingTextVFX(UnityAction onCompleteCallback = null)
     {
         fullText = textToAnimate.text; // Store the full text
         textToAnimate.text = string.Empty; // Clear the text
@@ -34,6 +34,12 @@ public class TypingEffect : MonoBehaviour
 
         if (onCompleteCallback != null)
             onCompleteCallback();
+    }
+
+    public void StopTypingVFX()
+    {
+        //StopCoroutine(TypingTextVFX());
+        StopAllCoroutines();
 
     }
 }

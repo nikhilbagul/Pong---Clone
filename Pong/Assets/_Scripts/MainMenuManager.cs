@@ -7,16 +7,17 @@ public class MainMenuManager : MonoBehaviour {
 
     public GameObject divider, mainMenuCanvas, player1ModeHelpCanvas, player2ModeHelpCanvas;
 
-    private bool player1Mode, player2Mode, isMainMenu, isIntroTextBlinking;
+    private bool player1Mode, player2Mode, isIntroTextBlinking, isTypingVFXRunning;
 
     public Text introText;
-    public GameObject creditsPanel;
+    public GameObject creditsPanel, mainMenuPanel;
+    
 
     void Start()
     {
         player1Mode = false;
-        player2Mode = false;
-        isMainMenu = true;
+        player2Mode = false;        
+        isTypingVFXRunning = false;
 
         // Intro Text blinking animation
         //introText.DOColor(Color.black, 1.0f,).SetLoops(-1, LoopType.Yoyo);
@@ -46,28 +47,33 @@ public class MainMenuManager : MonoBehaviour {
 	// Update is called once per frame, roughly 60 times per second. (System dependent value)
 	void Update ()
     {
-        if (isMainMenu)
+        if (mainMenuPanel.activeSelf)
         {
-            if (Input.GetKey(KeyCode.Alpha1))
+            if (Input.GetKeyUp(KeyCode.Alpha1))
             {
                 on1PlayerClick();                                       //load Help Screen for 1 player scene from main menu on user selection
             }
 
-            if (Input.GetKey(KeyCode.Alpha2))
+            if (Input.GetKeyUp(KeyCode.Alpha2))
             {
                 on2PlayerClick();                                       //load Help Screen scene for 2 players from main menu on user selection
             }
 
-            if (Input.GetKey(KeyCode.Space))                            //quit the game from main menu
+            if (Input.GetKeyUp(KeyCode.Space))                            //quit the game from main menu
             {
                 onQuitClick();
             }
         }
-        
+
+        if (Input.anyKeyDown && !mainMenuPanel.activeSelf)
+        {
+            StartCoroutine(OnSplashScreenClicked());
+        }
+
 
         if (player1Mode)
         {
-            if (Input.GetKey(KeyCode.Return))
+            if (Input.GetKeyUp(KeyCode.Return))
             {
                 SceneManager.LoadScene("GameScreen-1player");               //load GameScreen scene for 1 player mode
             }
@@ -75,7 +81,7 @@ public class MainMenuManager : MonoBehaviour {
 
         if (player2Mode)
         {
-            if (Input.GetKey(KeyCode.Return))
+            if (Input.GetKeyUp(KeyCode.Return))
             {
                 SceneManager.LoadScene("GameScreen-2players");               //load GameScreen scene for 2 player mode
             }
@@ -86,8 +92,7 @@ public class MainMenuManager : MonoBehaviour {
     {
         divider.SetActive(true);
         player1ModeHelpCanvas.SetActive(true);
-        mainMenuCanvas.SetActive(false);
-        isMainMenu = false;
+        mainMenuCanvas.SetActive(false);        
         player1Mode = true;                
     }
 
@@ -95,8 +100,7 @@ public class MainMenuManager : MonoBehaviour {
     {
         divider.SetActive(true);
         player2ModeHelpCanvas.SetActive(true);
-        mainMenuCanvas.SetActive(false);
-        isMainMenu = false;
+        mainMenuCanvas.SetActive(false);        
         player2Mode = true;       
     }
 
@@ -105,21 +109,33 @@ public class MainMenuManager : MonoBehaviour {
         Application.Quit();                                         //quit the game from main menu
     }   
 
-    public void OnSplashScreenClicked()
+    public IEnumerator OnSplashScreenClicked()
     {
-        isIntroTextBlinking = false;
-        introText.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        if (!isTypingVFXRunning)
+        {
+            isIntroTextBlinking = false;
+            introText.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 
-        introText.text = "Pong is a two-dimensional sports game that simulates table tennis. The player controls an in-game paddle by moving it vertically across the left or right side of the screen. They can compete against another player controlling a second paddle on the opposing side. Players use the paddles to hit a ball back and forth. The goal is for each player to reach eleven points before the opponent; points are earned when one fails to return the ball to the other.";
+            introText.text = "Pong is a 2D sports game that simulates table tennis. The player controls an in-game paddle by moving it vertically across the left or right side of the screen. They can compete against another player controlling a second paddle on the opposing side. Players use the paddles to hit a ball back and forth. The goal is for each player to reach 5 points before the opponent; points are earned when one fails to return the ball to the other.";
 
-        introText.GetComponent<TypingEffect>().StartTypingTextVFX(EnableCreditsPanel); // Start typing animation
+            introText.GetComponent<TypingEffect>().StartTypingTextVFX(PostTypingVFX); // Start typing animation
+            isTypingVFXRunning = true;
+            yield return null;
+        }
+        else
+        {
+            introText.GetComponent<TypingEffect>().StopTypingVFX(); // Stop typing animation            
+            introText.text = "Pong is a 2D sports game that simulates table tennis. The player controls an in-game paddle by moving it vertically across the left or right side of the screen. They can compete against another player controlling a second paddle on the opposing side. Players use the paddles to hit a ball back and forth. The goal is for each player to reach 5 points before the opponent; points are earned when one fails to return the ball to the other.";
+            yield return new WaitForSeconds(1);
+            PostTypingVFX();
+            isTypingVFXRunning = false;
+        }
     }
 
-    void EnableCreditsPanel()
-    {
-        creditsPanel.SetActive(true);   
+    void PostTypingVFX()
+    {        
+        creditsPanel.SetActive(true);
+        mainMenuPanel.SetActive(true);
     }
-
-
 
 }
